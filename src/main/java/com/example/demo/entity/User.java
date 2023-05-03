@@ -1,25 +1,25 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
-
-import java.util.UUID;
+import lombok.Data;
 
 @Entity
 @Table(name = "user")
+@Data
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public UUID uuid;
+    private int id;
 
-    public String email;
+    @Column(nullable = false)
+    private String email;
 
-    public String password;
+    @Column(nullable = false)
+    private String password;
 
-    public String firstName;
+    private String firstName;
 
-    public String lastName;
+    private String lastName;
 
-    public User() {
-    }
 }

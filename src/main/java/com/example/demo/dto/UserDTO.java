@@ -1,10 +1,8 @@
 package com.example.demo.dto;
 
-import java.util.UUID;
-
 public class UserDTO {
 
-    public UUID uuid;
+    public int uuid;
 
     public String email;
 

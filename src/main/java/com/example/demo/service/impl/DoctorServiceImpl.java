@@ -3,8 +3,10 @@ package com.example.demo.service.impl;
 import com.example.demo.dto.DoctorCreateDTO;
 import com.example.demo.dto.DoctorDTO;
 import com.example.demo.entity.Doctor;
+import com.example.demo.entity.DonationCenter;
 import com.example.demo.entity.UserRole;
 import com.example.demo.repository.DoctorRepository;
+import com.example.demo.service.CenterService;
 import com.example.demo.service.DoctorService;
 import com.example.demo.service.mapper.DoctorMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,8 @@ public class DoctorServiceImpl implements DoctorService {
     DoctorRepository doctorRepository;
     @Autowired
     DoctorMapper doctorMapper;
+    @Autowired
+    CenterService centerService;
 
     @Override
     public DoctorDTO registerDoctor(DoctorCreateDTO dto) {
@@ -57,9 +61,19 @@ public class DoctorServiceImpl implements DoctorService {
         updatedDoctor.setPassword(dto.password);
         updatedDoctor.setFirstName(dto.firstName);
         updatedDoctor.setLastName(dto.lastName);
-        updatedDoctor.setDonationCenter(dto.donationCenter);
+        DonationCenter donationCenter = centerService.findById(dto.donationCenterId);
+        updatedDoctor.setDonationCenter(donationCenter);
         updatedDoctor.setRole(UserRole.Role.doctor);
         Doctor savedDoctor = doctorRepository.save(updatedDoctor);
         return doctorMapper.toDTO(savedDoctor);
+    }
+
+    @Override
+    public Doctor findById(Integer id) {
+        Optional<Doctor> doctor = doctorRepository.findById(id);
+        if (doctor.isPresent())
+            return doctor.get();
+        else
+            return null;
     }
 }

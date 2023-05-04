@@ -7,7 +7,7 @@ public class DoctorDTO {
     public String email;
     public String firstName;
     public String lastName;
-    public String donationCenter;
+    public int donationCenterId;
     public UserRole.Role role;
 
 }

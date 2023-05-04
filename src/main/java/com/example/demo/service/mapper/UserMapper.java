@@ -1,6 +1,6 @@
 package com.example.demo.service.mapper;
 
-import com.example.demo.dto.UserCreateDTO;
+import com.example.demo.dto.UserLoginDTO;
 import com.example.demo.dto.UserDTO;
 import com.example.demo.entity.User;
 import org.springframework.stereotype.Component;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserMapper {
 
-    public User toUser(UserCreateDTO dto) {
+    public User toUser(UserLoginDTO dto) {
         User user = new User();
         user.setEmail(dto.email);
         user.setPassword(dto.password);

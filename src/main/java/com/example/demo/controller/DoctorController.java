@@ -12,15 +12,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/admin")
-public class AdminController {
+@RequestMapping("/doctors")
+public class DoctorController {
 
     @Autowired
     DoctorService doctorService;
     @Autowired
     UserService userService;
 
-    @PostMapping("/doctor")
+    @PostMapping()
     ResponseEntity<?> addDoctor(@RequestBody DoctorCreateDTO dto) {
         DoctorDTO registeredDoctor = doctorService.registerDoctor(dto);
         if (registeredDoctor == null)
@@ -29,13 +29,13 @@ public class AdminController {
             return ResponseEntity.ok(registeredDoctor);
     }
 
-    @PostMapping()
+    @GetMapping()
     ResponseEntity<List<DoctorDTO>> allDoctors() {
         List<DoctorDTO> doctors = doctorService.allDoctors();
         return ResponseEntity.ok(doctors);
     }
 
-    @DeleteMapping("/doctor/{id}")
+    @DeleteMapping("{id}")
     @Transactional
     public ResponseEntity<String> deleteDoctor(@PathVariable Integer id) {
         doctorService.deleteDoctor(id);
@@ -43,7 +43,7 @@ public class AdminController {
         return ResponseEntity.ok("Doctor deleted");
     }
 
-    @PutMapping("doctor/{id}")
+    @PutMapping("{id}")
     ResponseEntity<DoctorDTO> updateDoctor(@PathVariable Integer id, @RequestBody DoctorCreateDTO dto) {
         DoctorDTO updatedDoctor = doctorService.updateDoctor(id, dto);
         return ResponseEntity.ok(updatedDoctor);

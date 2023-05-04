@@ -2,7 +2,7 @@ package com.example.demo.service.impl;
 
 import com.example.demo.dto.DonorCreateDTO;
 import com.example.demo.dto.DonorDTO;
-import com.example.demo.dto.UserCreateDTO;
+import com.example.demo.dto.UserLoginDTO;
 import com.example.demo.dto.UserDTO;
 import com.example.demo.entity.Donor;
 import com.example.demo.entity.User;
@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO loginUser(UserCreateDTO dto) {
+    public UserDTO loginUser(UserLoginDTO dto) {
         Optional<User> user = userRepository.findByEmailAndPassword(dto.email, dto.password);
         if (user.isEmpty())
             return null;

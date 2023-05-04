@@ -9,5 +9,7 @@ import lombok.Data;
 @Data
 public class Doctor extends User{
 
-    private String donationCenter;
+    @ManyToOne
+    @JoinColumn(name = "donation_center_id")
+    private DonationCenter donationCenter;
 }

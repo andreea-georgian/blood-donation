@@ -6,6 +6,7 @@ import lombok.Data;
 @Entity
 @Table(name = "user")
 @Data
+@Inheritance(strategy = InheritanceType.JOINED)
 public class User {
 
     @Id
@@ -21,5 +22,8 @@ public class User {
     private String firstName;
 
     private String lastName;
+
+    @Column(nullable = false)
+    private UserRole.Role role;
 
 }

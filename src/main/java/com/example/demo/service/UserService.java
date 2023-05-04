@@ -1,11 +1,14 @@
 package com.example.demo.service;
 
+import com.example.demo.dto.DonorCreateDTO;
+import com.example.demo.dto.DonorDTO;
 import com.example.demo.dto.UserCreateDTO;
 import com.example.demo.dto.UserDTO;
-import org.springframework.stereotype.Service;
-
 
 public interface UserService {
 
-    UserDTO registerUser(UserCreateDTO dto);
+    DonorDTO registerUser(DonorCreateDTO dto);
+
+    UserDTO loginUser(UserCreateDTO dto);
+    void deleteUser(Integer id);
 }

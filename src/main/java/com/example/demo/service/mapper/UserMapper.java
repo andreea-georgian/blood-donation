@@ -17,10 +17,11 @@ public class UserMapper {
 
     public UserDTO toDTO(User user) {
         UserDTO dto = new UserDTO();
-        dto.uuid = user.getId();
+        dto.id = user.getId();
         dto.email = user.getEmail();
         dto.firstName = user.getFirstName();
         dto.lastName = user.getLastName();
+        dto.role = user.getRole();
         return dto;
     }
 }

@@ -27,9 +27,6 @@ public class AppointmentMapper {
         Donor donor = donorService.findById(dto.donorId);
         appointment.setDonor(donor);
 
-        Doctor doctor = doctorService.findById(dto.doctorId);
-        appointment.setDoctor(doctor);
-
         DonationCenter donationCenter = centerService.findById(dto.centerId);
         appointment.setCenter(donationCenter);
 

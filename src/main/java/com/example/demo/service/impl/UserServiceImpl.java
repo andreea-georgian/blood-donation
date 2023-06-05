@@ -31,6 +31,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User findById(Integer id) {
+        Optional<User> user = userRepository.findById(id);
+        if(user.isPresent())
+            return user.get();
+        else return null;
+    }
+
+    @Override
     public DonorDTO registerUser(DonorCreateDTO dto) {
         if (userRepository.findByEmail(dto.email).isEmpty()) {
             Donor savedDonor = donorRepository.save(donorMapper.toDonor(dto));

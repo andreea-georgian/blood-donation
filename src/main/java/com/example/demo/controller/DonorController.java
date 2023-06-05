@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/donors")
+@CrossOrigin
 public class DonorController {
 
     @Autowired
     DonorService donorService;
+    @Autowired
     UserService userService;
 
     @PutMapping("/{id}")

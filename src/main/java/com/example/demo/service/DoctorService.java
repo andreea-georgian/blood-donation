@@ -11,5 +11,7 @@ public interface DoctorService {
     List<DoctorDTO> allDoctors();
     void deleteDoctor(Integer id);
     DoctorDTO updateDoctor(Integer id, DoctorCreateDTO dto);
-    Doctor findById(Integer id);
+//    Doctor findById(Integer id);
+
+    List<Doctor> findByCenterId(Integer centerId);
 }

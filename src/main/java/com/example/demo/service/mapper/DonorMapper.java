@@ -17,8 +17,11 @@ public class DonorMapper {
         dto.lastName = donor.getLastName();
         dto.county = donor.getCounty();
         dto.age = donor.getAge();
+        dto.phoneNumber = donor.getPhoneNumber();
         dto.bloodType = donor.getBloodType();
         dto.role = donor.getRole();
+        dto.emailNotification = donor.getEmailNotification();
+        dto.smsNotification = donor.getSmsNotification();
         return dto;
     }
 
@@ -29,9 +32,12 @@ public class DonorMapper {
         donor.setFirstName(dto.firstName);
         donor.setLastName(dto.lastName);
         donor.setAge(dto.age);
+        donor.setPhoneNumber(dto.phoneNumber);
         donor.setCounty(dto.county);
         donor.setBloodType(dto.bloodType);
         donor.setRole(UserRole.Role.donor);
+        donor.setEmailNotification(dto.emailNotification);
+        donor.setSmsNotification(dto.smsNotification);
         return donor;
     }
 }

@@ -11,4 +11,7 @@ public class Donor extends User{
     private String bloodType;
     private String county;
     private int age;
+    private String phoneNumber;
+    private Boolean smsNotification;
+    private Boolean emailNotification;
 }

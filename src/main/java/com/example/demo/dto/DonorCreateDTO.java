@@ -8,5 +8,8 @@ public class DonorCreateDTO {
     public String lastName;
     public String county;
     public int age;
+    public String phoneNumber;
     public String bloodType;
+    public Boolean smsNotification;
+    public Boolean emailNotification;
 }

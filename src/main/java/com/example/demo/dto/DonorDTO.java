@@ -9,6 +9,9 @@ public class DonorDTO {
     public String lastName;
     public String county;
     public int age;
+    public String phoneNumber;
     public String bloodType;
     public UserRole.Role role;
+    public Boolean smsNotification;
+    public Boolean emailNotification;
 }

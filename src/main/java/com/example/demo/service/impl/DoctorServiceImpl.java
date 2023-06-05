@@ -4,10 +4,12 @@ import com.example.demo.dto.DoctorCreateDTO;
 import com.example.demo.dto.DoctorDTO;
 import com.example.demo.entity.Doctor;
 import com.example.demo.entity.DonationCenter;
+import com.example.demo.entity.User;
 import com.example.demo.entity.UserRole;
 import com.example.demo.repository.DoctorRepository;
 import com.example.demo.service.CenterService;
 import com.example.demo.service.DoctorService;
+import com.example.demo.service.UserService;
 import com.example.demo.service.mapper.DoctorMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +27,8 @@ public class DoctorServiceImpl implements DoctorService {
     DoctorMapper doctorMapper;
     @Autowired
     CenterService centerService;
+    @Autowired
+    UserService userService;
 
     @Override
     public DoctorDTO registerDoctor(DoctorCreateDTO dto) {
@@ -58,7 +62,8 @@ public class DoctorServiceImpl implements DoctorService {
         Doctor updatedDoctor = new Doctor();
         updatedDoctor.setId(id);
         updatedDoctor.setEmail(dto.email);
-        updatedDoctor.setPassword(dto.password);
+        User user = userService.findById(id);
+        updatedDoctor.setPassword(user.getPassword());
         updatedDoctor.setFirstName(dto.firstName);
         updatedDoctor.setLastName(dto.lastName);
         DonationCenter donationCenter = centerService.findById(dto.donationCenterId);
@@ -68,12 +73,19 @@ public class DoctorServiceImpl implements DoctorService {
         return doctorMapper.toDTO(savedDoctor);
     }
 
+//    @Override
+//    public Doctor findById(Integer id) {
+//        Optional<Doctor> doctor = doctorRepository.findById(id);
+//        if (doctor.isPresent())
+//            return doctor.get();
+//        else
+//            return null;
+//    }
+
     @Override
-    public Doctor findById(Integer id) {
-        Optional<Doctor> doctor = doctorRepository.findById(id);
-        if (doctor.isPresent())
-            return doctor.get();
-        else
-            return null;
+    public List<Doctor> findByCenterId(Integer centerId) {
+        DonationCenter center = centerService.findById(centerId);
+        List<Doctor> doctorList = doctorRepository.findByDonationCenter(center);
+        return doctorList;
     }
 }

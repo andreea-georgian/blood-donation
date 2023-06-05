@@ -22,7 +22,7 @@ public class DoctorMapper {
         dto.firstName = doctor.getFirstName();
         dto.lastName = doctor.getLastName();
         dto.donationCenterId = doctor.getDonationCenter().getId();
-        dto.role = doctor.getRole();
+        dto.donationCenterName = doctor.getDonationCenter().getName();
         return dto;
     }
 
